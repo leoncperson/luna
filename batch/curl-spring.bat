@@ -1,3 +1,4 @@
+@REM se crea un proyecto desde spring-boot con tantas dependencias necesarias como sea posible
 curl https://start.spring.io/starter.zip -d javaVersion=11 -d groupId=com.exercise -d artifactId=pitufos -d name=pitufos -d description="exercise for pitufos" -d package=com.exercise.pitufos -d dependencies=web,devtools,data-jdbc,h2,lombok,flyway,mysql,data-jpa,security -d type=maven-project -d bootVersion=2.7.8 -o pitufos.zip
 
 

@@ -15,8 +15,7 @@ jobs:
           ls -l
           df -h
           set
-          mvn clean
-          mvn compile
+          mvn -q clean compile
 #      - name: Run test suite
 #        run: docker-compose -f docker/docker-compose.yaml exec -T app bash scripts/build.sh
 #      - name: Upload coverage report

@@ -38,11 +38,32 @@ Donde un pitufo tiene un **nombre**, un **ID**, **fuerza** (un numero en el rang
 4. crear estructura
 	- como no es posible enviar directorios vacios, se crea al menos una clase por directorio
 		- tanto para * \test * como para * \main*
-		- otro
+		- luego para las capas queda algo como:
+			- **/config**
+			- **/configuration**
+			- **/controller**
+			- **/model**
+			- **/repositoty**
+			- **/service**
+			- **/dto**
+			- **/exception**
+			- **/security**
+			- **/entity**
+			- **/persistence**
+			- **/util**
+			- **/constant**
+			- **/validator**
+			- **/dto**
+			- **/annotation**
+			- **/request**
+			- **/response**
+			- **/mapper**
+			
+			
 ## Pasos
 repo de prueba
 Para poder generar un proyecto se usa spring-boot que permitira crear el esqueleto
-**prerequisito**
+**prerequisitos**
 comando `curl` instalado
 
 listado

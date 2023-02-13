@@ -10,12 +10,13 @@ jobs:
         run: |
           pwd
           ls -l
-          cd $RUNNER_WORKSPACE/luna/pitufos
+          cd $GITHUB_WORKSPACE/pitufos
           echo "---------------"
           ls -l
           df -h
           set
           mvn clean
+          mvn compile
 #      - name: Run test suite
 #        run: docker-compose -f docker/docker-compose.yaml exec -T app bash scripts/build.sh
 #      - name: Upload coverage report

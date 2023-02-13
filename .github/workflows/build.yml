@@ -28,7 +28,7 @@ jobs:
       - name : check test
         run : |
           cd $GITHUB_WORKSPACE/pitufos
-          mvn clean compile test
+          mvn -q clean compile test
   package:
     runs-on: ubuntu-20.04
     needs: build

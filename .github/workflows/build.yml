@@ -23,6 +23,8 @@ jobs:
   test:
     runs-on: ubuntu-20.04
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name : check test
         run : |
           cd $GITHUB_WORKSPACE/pitufos

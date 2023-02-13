@@ -20,15 +20,13 @@ jobs:
 #        run: docker-compose -f docker/docker-compose.yaml exec -T app bash scripts/build.sh
 #      - name: Upload coverage report
 #        uses: codecov/codecov-action@v2
-..test:
+  test:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
       - name : check test
         run : |
           cd $GITHUB_WORKSPACE/pitufos
-          mvn -q clean compile
+          mvn clean compile test
   package:
     runs-on: ubuntu-20.04
     needs: build

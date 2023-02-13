@@ -8,7 +8,7 @@ jobs:
         uses: actions/checkout@v2
       - name: commands => run maven
         run: |
-          cd /pitufos
+#          cd /pitufos
           mvn compile
           ls -l
           df -h

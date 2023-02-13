@@ -9,6 +9,9 @@ jobs:
       - name: commands => run maven
         run: |
           ls -l
+          cd $RUNNER_WORKSPACE/pitufos
+          echo "---------------"
+          ls -l
           df -h
           set
           mvn clean

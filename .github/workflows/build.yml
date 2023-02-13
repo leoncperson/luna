@@ -7,7 +7,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: cd ./pitufos & run maven
-        run: cd ./pitufos & mvn clean
+        run: |
+          ls -l
+          mvn clean
 #      - name: Run test suite
 #        run: docker-compose -f docker/docker-compose.yaml exec -T app bash scripts/build.sh
 #      - name: Upload coverage report

@@ -8,8 +8,9 @@ jobs:
         uses: actions/checkout@v2
       - name: commands => run maven
         run: |
+          pwd
           ls -l
-          cd $RUNNER_WORKSPACE/pitufos
+          cd $RUNNER_WORKSPACE/luna/pitufos
           echo "---------------"
           ls -l
           df -h

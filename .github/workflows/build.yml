@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: run maven
+      - name: cd ./pitufos & run maven
         run: mvn clean
 #      - name: Run test suite
 #        run: docker-compose -f docker/docker-compose.yaml exec -T app bash scripts/build.sh

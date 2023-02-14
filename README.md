@@ -62,6 +62,15 @@ Donde un pitufo tiene un **nombre**, un **ID**, **fuerza** (un numero en el rang
 	- http://localhost:9080/swagger-ui.html#/pitufo-controller/getPitufoByIdUsingGET
 6. url de H2
 	- http://localhost:9080/h2-console
+	- para acceder a un DB almacenado localmente, el path queda de la forma
+		- jdbc:h2:file:./TestDataBase
+		- jdbc:h2:file:C:/wk-demo/bar/target/foobar
+		donde el archivo es foobar.db
+7. uso de Flyway
+	- https://documentation.red-gate.com/fd/first-steps-maven-184127578.html
+	- para ejecutar **flyway** de forma manual, ejecutar
+		- **mvn flyway:migrate**
+		- **mvn clean compile** para regenerar todo el archivo .db
 ## Pasos
 repo de prueba
 Para poder generar un proyecto se usa spring-boot que permitira crear el esqueleto

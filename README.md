@@ -58,8 +58,10 @@ Donde un pitufo tiene un **nombre**, un **ID**, **fuerza** (un numero en el rang
 			- **/request**
 			- **/response**
 			- **/mapper**
-			
-			
+5. url de swagger
+	- http://localhost:9080/swagger-ui.html#/pitufo-controller/getPitufoByIdUsingGET
+6. url de H2
+	- http://localhost:9080/h2-console
 ## Pasos
 repo de prueba
 Para poder generar un proyecto se usa spring-boot que permitira crear el esqueleto

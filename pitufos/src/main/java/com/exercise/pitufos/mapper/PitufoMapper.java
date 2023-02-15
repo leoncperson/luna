@@ -1,5 +1,8 @@
 package com.exercise.pitufos.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,4 +21,8 @@ public interface PitufoMapper {
 	
 	@InheritInverseConfiguration
 	PitufoDTO toDTO(PitufoEntity entity);
+	default List<PitufoDTO> toDTOList(List<PitufoEntity> entityList){
+		return entityList.stream().map(pitufoE -> PitufoMapper.MAPPER.toDTO(pitufoE))
+				.collect(Collectors.toList());
+	}
 }

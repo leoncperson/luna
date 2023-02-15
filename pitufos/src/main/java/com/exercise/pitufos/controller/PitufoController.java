@@ -33,5 +33,11 @@ public class PitufoController {
         .map(ResponseEntity::ok)
         .orElseGet(() -> ResponseEntity.notFound().build());
 	}
+	
+	@ApiOperation(value="Buscar Entidad por nombre")
+	@GetMapping("/getByNombre/{nombre}")
+	public List<PitufoDTO> getPitufoByNombre(@PathVariable("nombre") String nombre) {
+		return pitufoService.getPitufoByNombre(nombre);
+	}
 
 }

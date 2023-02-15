@@ -13,6 +13,6 @@ import com.exercise.pitufos.persistence.entity.PitufoEntity;
 public interface PitufoRepository extends JpaRepository<PitufoEntity,Long>{
 	
 	@Transactional(readOnly = true)
-	List<PitufoEntity> findByNombreContainingIgnoreCase(String nombre);
+	List<PitufoEntity> findByNombreContainingIgnoreCase(String name);
 
 }

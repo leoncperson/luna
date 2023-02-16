@@ -44,4 +44,12 @@ public class PitufoService {
 		return PitufoMapper.MAPPER.toDTOList(entityList);
 	}
 
+	public Optional<PitufoEntity> updatePitufo(Long id, PitufoDTO dto) {
+		Optional<PitufoEntity> optEntity = getPitufoById(id);
+		optEntity.get().setNombre(dto.getNombre());
+		optEntity.get().setDescripcion(dto.getDescripcion());
+		pitufoRepository.save(optEntity.get());
+		return optEntity;
+	}
+
 }

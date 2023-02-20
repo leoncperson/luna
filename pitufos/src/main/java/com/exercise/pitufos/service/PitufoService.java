@@ -19,7 +19,9 @@ public class PitufoService {
 	private PitufoRepository pitufoRepository;
 	
 	public Optional<PitufoEntity> getPitufoById(Long id) {
-		return pitufoRepository.findById(id);
+		Optional<PitufoEntity> res = null;
+		res = pitufoRepository.findById(id);
+		return res;
 	}
 
 	public List<PitufoDTO> _getAllPitufo() {

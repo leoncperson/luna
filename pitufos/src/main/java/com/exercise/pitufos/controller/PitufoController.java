@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.exercise.pitufos.aspect.annotation.AuditTime;
 import com.exercise.pitufos.model.PitufoDTO;
 import com.exercise.pitufos.service.PitufoService;
 
@@ -25,12 +26,14 @@ public class PitufoController {
 	
 	@ApiOperation(value ="Retornar todas las entidades de la base")
 	@GetMapping("/getAll")
+	@AuditTime
 	public List<PitufoDTO> getAllPitufo() {
 		return pitufoService.getAllPitufo();
 	}
 
 	@ApiOperation(value =  "Buscar Entidad por ID")
 	@GetMapping("/{id}")
+	@AuditTime
 	public ResponseEntity<?> getPitufoById(@PathVariable("id") Long id) {
 		return pitufoService.getPitufoById(id)
         .map(ResponseEntity::ok)
@@ -39,11 +42,13 @@ public class PitufoController {
 	
 	@ApiOperation(value="Buscar Entidad por nombre")
 	@GetMapping("/getByNombre/{nombre}")
+	@AuditTime
 	public List<PitufoDTO> getPitufoByNombre(@PathVariable("nombre") String nombre) {
 		return pitufoService.getPitufoByNombre(nombre);
 	}
 	
 	@PutMapping("/{id}")
+	@AuditTime
 	public ResponseEntity<?> updatePitufo(@PathVariable("id") Long id, @RequestBody PitufoDTO dto){
 		return pitufoService.updatePitufo(id,dto)
         .map(ResponseEntity::ok)
@@ -51,6 +56,7 @@ public class PitufoController {
 	}
 	
 	@DeleteMapping("/{id}")
+	@AuditTime
 	public ResponseEntity<?> deletePitufo(@PathVariable("id") Long id){
 		pitufoService.deletePitufo(id);
 		return ResponseEntity.ok().build();

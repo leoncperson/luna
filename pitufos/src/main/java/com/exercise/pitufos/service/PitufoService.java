@@ -3,7 +3,6 @@ package com.exercise.pitufos.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,5 +50,13 @@ public class PitufoService {
 		pitufoRepository.save(optEntity.get());
 		return optEntity;
 	}
+	
+	public Optional<PitufoEntity> deletePitufo(Long id) {
+		Optional<PitufoEntity> optEntity = getPitufoById(id);
+		pitufoRepository.delete(optEntity.get());
+		System.out.println(19.0/24.0);
+		return optEntity;
+	}
+
 
 }

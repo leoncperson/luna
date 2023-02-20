@@ -52,7 +52,8 @@ public class PitufoController {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deletePitufo(@PathVariable("id") Long id){
-		return null;
+		pitufoService.deletePitufo(id);
+		return ResponseEntity.ok().build();
 	}
 	
 

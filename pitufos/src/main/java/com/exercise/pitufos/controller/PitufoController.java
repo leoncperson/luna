@@ -2,6 +2,8 @@ package com.exercise.pitufos.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.exercise.pitufos.aspect.AuditTimeAspect;
 import com.exercise.pitufos.aspect.annotation.AuditTime;
 import com.exercise.pitufos.model.PitufoDTO;
 import com.exercise.pitufos.service.PitufoService;
@@ -24,10 +27,13 @@ public class PitufoController {
 	@Autowired
 	private PitufoService pitufoService;
 	
+	private static Logger logger = LoggerFactory.getLogger(AuditTimeAspect.class);
+
 	@ApiOperation(value ="Retornar todas las entidades de la base")
 	@GetMapping("/getAll")
 	@AuditTime
 	public List<PitufoDTO> getAllPitufo() {
+		logger.info("#getAllPitufo");
 		return pitufoService.getAllPitufo();
 	}
 
@@ -35,6 +41,7 @@ public class PitufoController {
 	@GetMapping("/{id}")
 	@AuditTime
 	public ResponseEntity<?> getPitufoById(@PathVariable("id") Long id) {
+		logger.info("#getPitufoById " + id);
 		return pitufoService.getPitufoById(id)
         .map(ResponseEntity::ok)
         .orElseGet(() -> ResponseEntity.notFound().build());
@@ -44,15 +51,25 @@ public class PitufoController {
 	@GetMapping("/getByNombre/{nombre}")
 	@AuditTime
 	public List<PitufoDTO> getPitufoByNombre(@PathVariable("nombre") String nombre) {
+		logger.info("#getPitufoByNombre " + nombre);
 		return pitufoService.getPitufoByNombre(nombre);
 	}
 	
 	@PutMapping("/{id}")
 	@AuditTime
 	public ResponseEntity<?> updatePitufo(@PathVariable("id") Long id, @RequestBody PitufoDTO dto){
+		logger.info("#updatePitufo " + dto);
 		return pitufoService.updatePitufo(id,dto)
         .map(ResponseEntity::ok)
         .orElseGet(() -> ResponseEntity.notFound().build());
+	}
+	
+	@PutMapping("/createPitufo")
+	@AuditTime
+	public ResponseEntity<?> createPitufo(@RequestBody PitufoDTO dto){
+		logger.info("#createPitufo " + dto);
+		return ResponseEntity.ok(pitufoService.createPitufo(dto));
+
 	}
 	
 	@DeleteMapping("/{id}")

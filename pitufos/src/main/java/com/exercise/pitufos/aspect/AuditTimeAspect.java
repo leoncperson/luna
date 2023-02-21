@@ -20,7 +20,7 @@ public class AuditTimeAspect {
         stopWatch.start();
         Object objectRuntime = point.proceed();
         stopWatch.stop();
-        logger.info("Demora de peticion" + point.getSignature().getName() + "() es "
+        logger.info("Demora de request " + point.getSignature().getName() + "() es "
                 + stopWatch.getTotalTimeMillis() + " ms");
         return objectRuntime;
     }

@@ -21,6 +21,7 @@ public interface PitufoMapper {
 	
 	@InheritInverseConfiguration
 	PitufoDTO toDTO(PitufoEntity entity);
+	
 	default List<PitufoDTO> toDTOList(List<PitufoEntity> entityList){
 		return entityList.stream().map(pitufoE -> PitufoMapper.MAPPER.toDTO(pitufoE))
 				.collect(Collectors.toList());

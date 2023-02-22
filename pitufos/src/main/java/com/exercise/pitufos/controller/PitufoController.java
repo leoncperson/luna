@@ -1,6 +1,7 @@
 package com.exercise.pitufos.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.exercise.pitufos.aspect.AuditTimeAspect;
 import com.exercise.pitufos.aspect.annotation.AuditTime;
+import com.exercise.pitufos.exception.DuplicatedPitufoException;
+import com.exercise.pitufos.exception.NonExistsPitufoException;
+import com.exercise.pitufos.exception.PitufoException;
 import com.exercise.pitufos.model.PitufoDTO;
 import com.exercise.pitufos.service.PitufoService;
 
@@ -27,7 +31,7 @@ public class PitufoController {
 	@Autowired
 	private PitufoService pitufoService;
 	
-	private static Logger logger = LoggerFactory.getLogger(AuditTimeAspect.class);
+	private static Logger logger = LoggerFactory.getLogger(PitufoController.class);
 
 	@ApiOperation(value ="Retornar todas las entidades de la base")
 	@GetMapping("/getAll")
@@ -42,7 +46,15 @@ public class PitufoController {
 	@AuditTime
 	public ResponseEntity<?> getPitufoById(@PathVariable("id") Long id) {
 		logger.info("#getPitufoById " + id);
-		return pitufoService.getPitufoById(id)
+		Optional<PitufoDTO> opt = null;
+		try {
+			opt = pitufoService.getPitufoById(id);
+		} catch (NonExistsPitufoException e) {
+			return ResponseEntity.notFound().build();
+		} catch (PitufoException e) {
+			return ResponseEntity.internalServerError().build();
+		}
+		return opt
         .map(ResponseEntity::ok)
         .orElseGet(() -> ResponseEntity.notFound().build());
 	}
@@ -59,23 +71,47 @@ public class PitufoController {
 	@AuditTime
 	public ResponseEntity<?> updatePitufo(@PathVariable("id") Long id, @RequestBody PitufoDTO dto){
 		logger.info("#updatePitufo " + dto);
-		return pitufoService.updatePitufo(id,dto)
-        .map(ResponseEntity::ok)
-        .orElseGet(() -> ResponseEntity.notFound().build());
+		Optional<PitufoDTO> opt = null;
+		try {
+			opt = pitufoService.updatePitufo(id,dto);
+		} catch (NonExistsPitufoException e) {
+			return ResponseEntity.notFound().build();
+		} catch (DuplicatedPitufoException e) {
+			return ResponseEntity.unprocessableEntity().build();
+		} catch (PitufoException e) {
+			return ResponseEntity.internalServerError().build();
+		}
+		return ResponseEntity.ok(opt);
 	}
 	
 	@PutMapping("/createPitufo")
 	@AuditTime
 	public ResponseEntity<?> createPitufo(@RequestBody PitufoDTO dto){
 		logger.info("#createPitufo " + dto);
-		return ResponseEntity.ok(pitufoService.createPitufo(dto));
-
+		Optional<PitufoDTO> opt = null;
+		try {
+			opt = (pitufoService.createPitufo(dto));
+		} catch (DuplicatedPitufoException e) {
+			return ResponseEntity.unprocessableEntity().build();
+		} catch (PitufoException e) {
+			return ResponseEntity.internalServerError().build();
+		} catch (Exception e) {
+			return ResponseEntity.internalServerError().build();
+		}
+		
+		return ResponseEntity.ok(opt);
 	}
 	
 	@DeleteMapping("/{id}")
 	@AuditTime
 	public ResponseEntity<?> deletePitufo(@PathVariable("id") Long id){
-		pitufoService.deletePitufo(id);
+		try {
+			pitufoService.deletePitufo(id);
+		} catch (NonExistsPitufoException e) {
+			return ResponseEntity.notFound().build();
+		} catch (PitufoException e) {
+			return ResponseEntity.internalServerError().build();
+		}
 		return ResponseEntity.ok().build();
 	}
 	

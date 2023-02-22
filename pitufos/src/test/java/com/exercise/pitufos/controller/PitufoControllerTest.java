@@ -19,6 +19,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import com.exercise.pitufos.model.PitufoDTO;
 import com.exercise.pitufos.persistence.entity.PitufoEntity;
 import com.exercise.pitufos.service.PitufoService;
 /**
@@ -39,7 +40,7 @@ public class PitufoControllerTest {
 	@Test
 	void consultar_pitufo_por_id_existente() throws Exception {
 		Long id = Long.valueOf(1);
-		PitufoEntity pivot = PitufoEntity.builder().nombre("pata").descripcion("un pitufo tipo pata").build();
+		PitufoDTO pivot = PitufoDTO.builder().nombre("pata").descripcion("un pitufo tipo pata").build();
 
 		given(pitufoService.getPitufoById(id)).willReturn(Optional.of(pivot));
 		

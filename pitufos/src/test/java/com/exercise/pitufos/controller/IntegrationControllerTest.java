@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.exercise.pitufos.exception.PitufoException;
 import com.exercise.pitufos.service.PitufoService;
 
 import static org.mockito.BDDMockito.willDoNothing;
@@ -41,7 +42,7 @@ public class IntegrationControllerTest {
 	
 	//test_baja_pitufo
 	@Test
-	public void test_baja_pitufo() {
+	public void test_baja_pitufo() throws PitufoException {
 		
 		Long id = Long.valueOf(1);
 		willDoNothing().given(pitufoService).deletePitufo(id);

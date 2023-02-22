@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class CacheConfig {
     @Bean
     public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("PITUFOS","PITUFOS_ALL");
+        return new ConcurrentMapCacheManager("PITUFOS_BY_ID","PITUFOS_ALL","PITUFOS_BY_NOMBRE");
     }
  
 }

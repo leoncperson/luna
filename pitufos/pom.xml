@@ -19,6 +19,7 @@
 		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
 		<springfox.version>2.9.2</springfox.version>
 		<ehcache.version>3.5.2</ehcache.version>
+		<ehcache.version>3.5.2</ehcache.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -93,8 +94,10 @@
 			<groupId>org.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 		</dependency>
-
-
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

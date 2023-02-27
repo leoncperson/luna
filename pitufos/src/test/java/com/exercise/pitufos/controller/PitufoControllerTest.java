@@ -38,7 +38,7 @@ public class PitufoControllerTest {
 	private PitufoService pitufoService;
 	
 	@Test
-	void consultar_pitufo_por_id_existente() throws Exception {
+	public void consultar_pitufo_por_id_existente() throws Exception {
 		Long id = Long.valueOf(1);
 		PitufoDTO pivot = PitufoDTO.builder().nombre("pata").descripcion("un pitufo tipo pata").build();
 
